@@ -33,3 +33,11 @@
 docker-compose build
 docker-compose up
 ```
+
+### AtlasPortal:
+
+http://localhost:8082
+
+### AtlasEngine:
+
+http://localhost:8000

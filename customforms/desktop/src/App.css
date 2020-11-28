@@ -1,0 +1,12 @@
+/* @import "../node_modules/@syncfusion/ej2-base/styles/bootstrap4.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/bootstrap4.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/bootstrap4.css";
+@import '../node_modules/@syncfusion/ej2-layouts/styles/bootstrap4.css';
+@import "../node_modules/@syncfusion/ej2-lists/styles/bootstrap4.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/bootstrap4.css";
+@import "../node_modules/@syncfusion/ej2-react-inputs/styles/bootstrap4.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/bootstrap4.css";
+@import "../node_modules/@syncfusion/ej2-react-dropdowns/styles/bootstrap4.css"; */
+@import "./bootstrap4.css";
+
+@import "../node_modules/bootstrap/dist/css/bootstrap-grid.css";

@@ -1,0 +1,18 @@
+{
+  "customFormConfig": {},
+  "processModelListConfig": {
+    "processes": [
+      {
+        "title": "Buch ausleihen",
+        "body": "Mit diesem Prozess kann ein Buch aus der Bibliothek ausgeliehen werden.",
+        "processModelId": "BuchAusleihen",
+        "startButtons": [
+          {
+            "startEventId": "buchAusleihenStart",
+            "title": "Ausleihe starten"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+[
+    {
+        "Isbn": "978-3-548-36778-1",
+        "Author": "Erich Fromm",
+        "Title": "Die Pathologie der Normalit\u00E4t",
+        "Genre": "Psychologie",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "3-909081-02-9",
+        "Author": "Eric-Emmanuel Schmidt",
+        "Title": "Hotel zu den zwei Welten",
+        "Genre": "Drama",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-499-22785-1",
+        "Author": "Simone de Beauvoir",
+        "Title": "Das andere Geschlecht",
+        "Genre": "Feminism",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-86820-029-4",
+        "Author": "Marc Aurel",
+        "Title": "Wege zu sich selbst",
+        "Genre": "Philosophie",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-423-35024-2",
+        "Author": "Erich Fromm",
+        "Title": "Die Furcht vor der Freiheit",
+        "Genre": "Psychologie",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-423-34234-6",
+        "Author": "Erich Fromm",
+        "Title": "Haben und Sein",
+        "Genre": "Psychologie",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-423-34647-4",
+        "Author": "Seneca",
+        "Title": "Von der Gelassenheit",
+        "Genre": "Philosophie",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-442-43768-9",
+        "Author": "Noah Gordon",
+        "Title": "Der Medicus",
+        "Genre": "Roman",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-1-400-03157-3",
+        "Author": "Henning Mankell",
+        "Title": "Mörder ohne Gesicht",
+        "Genre": "Krimi",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-453-43245-1",
+        "Author": "Stieg Larsson",
+        "Title": "Verblendung",
+        "Genre": "Krimi",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-446-45054-7",
+        "Author": "Bernd Rücker",
+        "Title": "Praxishandbuch BPMN",
+        "Genre": "Unternehmensentwicklung",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-8006-5773-5",
+        "Author": "John Doerr",
+        "Title": "OKR - Objectives & Key Results",
+        "Genre": "Unternehmensentwicklung",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-86645-631-0",
+        "Author": "Ken Schwaber",
+        "Title": "Agiles Projektmanagement mit Scrum",
+        "Genre": "Unternehmensentwicklung",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-0-321-20568-1",
+        "Author": "Mike Cohn",
+        "Title": "User Stories Applied",
+        "Genre": "Softwareentwicklung",
+        "IsAvailable": true
+    },
+    {
+        "Isbn": "978-3-446-44801-8",
+        "Author": "Gernot Starke",
+        "Title": "arc42 in Aktion",
+        "Genre": "Softwareentwicklung",
+        "IsAvailable": true
+    }
+]

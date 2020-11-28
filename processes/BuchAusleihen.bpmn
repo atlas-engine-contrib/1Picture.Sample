@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definition_f58c4dcb-bcd5-443c-8f91-9189b965fc74" targetNamespace="http://bpmn.io/schema/bpmn" exporter="BPMN Studio" exporterVersion="1">
+  <bpmn:collaboration id="Collaboration_1nb79gc" name="">
+    <bpmn:participant id="Participant_1tj8msg" name="BuchAusleihen" processRef="BuchAusleihen" />
+  </bpmn:collaboration>
+  <bpmn:process id="BuchAusleihen" name="BuchAusleihen" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0jtwexb">
+      <bpmn:lane id="Lane_0kp7hoz" name="Bibliothekar">
+        <bpmn:flowNodeRef>Beratung_durchfuehren</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ijli99</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_079akik</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0oiuekf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1uuu056</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1dmfl3n</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_02cx532" />
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1tn42x3" name="Kunde">
+        <bpmn:flowNodeRef>buchAusleihenStart</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>buchAuswaehlen</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0xrb5u4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1s0riee</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>empfehlungPruefen</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1aak8e5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ixfqmx</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_17jzrta</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1iuq9tj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0g2bsvc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0dq1o57</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="buchAusleihenStart" name="Start">
+      <bpmn:outgoing>Flow_0d26cja</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0zlu0kd" sourceRef="Activity_1uuu056" targetRef="Activity_0g2bsvc" />
+    <bpmn:sequenceFlow id="Flow_0hhr2u5" sourceRef="Activity_0ixfqmx" targetRef="Activity_079akik" />
+    <bpmn:sequenceFlow id="Flow_128drh0" sourceRef="buchAuswaehlen" targetRef="Gateway_0xrb5u4" />
+    <bpmn:sequenceFlow id="Flow_0wdgfxj" sourceRef="Beratung_durchfuehren" targetRef="Gateway_1s0riee" />
+    <bpmn:sequenceFlow id="Flow_0kirv6q" sourceRef="Activity_17jzrta" targetRef="Gateway_1aak8e5" />
+    <bpmn:sequenceFlow id="Flow_0inrq1v" name="Ja" sourceRef="Gateway_1aak8e5" targetRef="Activity_0ixfqmx">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.ausweisVorhanden == true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_04v8vm7" name="Nein" sourceRef="Gateway_1aak8e5" targetRef="Activity_1ijli99">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.ausweisVorhanden == false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1fg2fjq" sourceRef="Activity_1ijli99" targetRef="Gateway_0oiuekf" />
+    <bpmn:sequenceFlow id="Flow_1ptrif7" sourceRef="empfehlungPruefen" targetRef="Activity_17jzrta" />
+    <bpmn:sequenceFlow id="Flow_01o4jqr" sourceRef="Activity_0g2bsvc" targetRef="Activity_0dq1o57" />
+    <bpmn:sequenceFlow id="Flow_1l2cgnw" sourceRef="Activity_0dq1o57" targetRef="Event_1iuq9tj" />
+    <bpmn:sequenceFlow id="Flow_1cdm56s" sourceRef="Gateway_0oiuekf" targetRef="Activity_1dmfl3n" />
+    <bpmn:sequenceFlow id="Flow_0d26cja" sourceRef="buchAusleihenStart" targetRef="buchAuswaehlen" />
+    <bpmn:userTask id="buchAuswaehlen" name="Buch auswählen" camunda:formKey="Form Key">
+      <bpmn:extensionElements>
+        <camunda:formData />
+        <camunda:properties>
+          <camunda:property name="customForm" value="Workshop/BuchauswahlZusammenstellen" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0d26cja</bpmn:incoming>
+      <bpmn:outgoing>Flow_128drh0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Beratung_durchfuehren" name="Beratung durchführen" camunda:formKey="Form Key">
+      <bpmn:extensionElements>
+        <camunda:formData />
+        <camunda:properties>
+          <camunda:property name="customForm" value="Workshop/BeratungDurchfuehren" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rqpwh5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wdgfxj</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0xrb5u4" name="Beratung gewünscht?">
+      <bpmn:incoming>Flow_128drh0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rqpwh5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_03w9o0u</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0rqpwh5" name="Ja" sourceRef="Gateway_0xrb5u4" targetRef="Beratung_durchfuehren">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.beratungGewuenscht == true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_1s0riee" name="">
+      <bpmn:incoming>Flow_0wdgfxj</bpmn:incoming>
+      <bpmn:incoming>Flow_03w9o0u</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rvw66e</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0rvw66e" sourceRef="Gateway_1s0riee" targetRef="empfehlungPruefen" />
+    <bpmn:sequenceFlow id="Flow_03w9o0u" name="Nein" sourceRef="Gateway_0xrb5u4" targetRef="Gateway_1s0riee">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">token.current.beratungGewuenscht == false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="empfehlungPruefen" name="Buch ausleihen" camunda:formKey="Form Key">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="annehmen" label="Annehmen" type="boolean" defaultValue="" />
+        </camunda:formData>
+        <camunda:properties>
+          <camunda:property name="customForm" value="Workshop/EmpfehlungPruefen" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rvw66e</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ptrif7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_1aak8e5" name="Bibliotheksausweis vorhanden?">
+      <bpmn:incoming>Flow_0kirv6q</bpmn:incoming>
+      <bpmn:outgoing>Flow_0inrq1v</bpmn:outgoing>
+      <bpmn:outgoing>Flow_04v8vm7</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:manualTask id="Activity_0ixfqmx" name="Bibliothektsausweis vorlegen">
+      <bpmn:incoming>Flow_0inrq1v</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hhr2u5</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:serviceTask id="Activity_17jzrta" name="Bibliotheksausweis pruefen?" camunda:type="external" camunda:topic="BibliotheksausweisPruefen">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="ausweisVorhanden" label="Vorhanden?" type="boolean" defaultValue="true" />
+        </camunda:formData>
+        <camunda:properties>
+          <camunda:property name="payload" value="{}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ptrif7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kirv6q</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1ijli99" name="Bibliotheksausweis erstellen" camunda:formKey="Form Key">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="vorname" label="Vorname" type="string" defaultValue="" />
+          <camunda:formField id="nachname" label="Nachname" type="string" defaultValue="" />
+          <camunda:formField id="strasse" label="Strasse" type="string" defaultValue="" />
+          <camunda:formField id="hausnummer" label="Hausnummer" type="string" defaultValue="" />
+          <camunda:formField id="postleitzahl" label="Postleitzahl" type="long" defaultValue="" />
+          <camunda:formField id="stadt" label="Stadt" type="string" defaultValue="" />
+          <camunda:formField id="geburtsdatum" label="Geburtsdatum" type="date" defaultValue="" />
+        </camunda:formData>
+        <camunda:properties>
+          <camunda:property name="customForm" value="Workshop/BibliotheksausweisErstellen" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04v8vm7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fg2fjq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_079akik" name="Bibliotheksausweis überprüfen">
+      <bpmn:incoming>Flow_0hhr2u5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jjra2r</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0oiuekf" name="">
+      <bpmn:incoming>Flow_1fg2fjq</bpmn:incoming>
+      <bpmn:incoming>Flow_0jjra2r</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cdm56s</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0jjra2r" sourceRef="Activity_079akik" targetRef="Gateway_0oiuekf" />
+    <bpmn:endEvent id="Event_1iuq9tj" name="Buch ausgeliehen">
+      <bpmn:incoming>Flow_1l2cgnw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:scriptTask id="Activity_0g2bsvc" name="Ausgeliehene Bücherabrufen">
+      <bpmn:incoming>Flow_0zlu0kd</bpmn:incoming>
+      <bpmn:outgoing>Flow_01o4jqr</bpmn:outgoing>
+      <bpmn:script>return token.history.Beratung_durchfuehren;</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:userTask id="Activity_0dq1o57" name="Ausleihe bestätigen" camunda:formKey="">
+      <bpmn:extensionElements>
+        <camunda:formData />
+        <camunda:properties>
+          <camunda:property name="customForm" value="Workshop/AusleiheBestaetigen" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01o4jqr</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l2cgnw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_1uuu056" name="Buchausleihe eintragen" camunda:type="external" camunda:topic="BuchausleiheEintragen">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="isbn" label="ISBN" type="string" defaultValue="" />
+          <camunda:formField id="bibliotheksausweisnummer" label="Bibliothektsausweisnummer" type="string" defaultValue="" />
+          <camunda:formField id="rueckgabeDatum" label="Rückgabedatum" type="date" defaultValue="" />
+        </camunda:formData>
+        <camunda:properties>
+          <camunda:property name="customForm" value="BuchausleiheEintragen" />
+          <camunda:property name="payload" value="{}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_10nc1hz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zlu0kd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1dmfl3n" name="Buchausleihe eintragen" camunda:formKey="Form Key">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="isbn" label="ISBN" type="string" defaultValue="" />
+          <camunda:formField id="bibliotheksausweisnummer" label="Bibliothektsausweisnummer" type="string" defaultValue="" />
+          <camunda:formField id="rueckgabeDatum" label="Rückgabedatum" type="date" defaultValue="" />
+        </camunda:formData>
+        <camunda:properties>
+          <camunda:property name="customForm" value="Workshop/BuchausleiheEintragen" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1cdm56s</bpmn:incoming>
+      <bpmn:outgoing>Flow_10nc1hz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_10nc1hz" sourceRef="Activity_1dmfl3n" targetRef="Activity_1uuu056" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1nb79gc">
+      <bpmndi:BPMNShape id="Participant_1tj8msg_di" bpmnElement="Participant_1tj8msg" isHorizontal="true">
+        <dc:Bounds x="-605" y="-190" width="2196" height="440" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1tn42x3_di" bpmnElement="Lane_1tn42x3" isHorizontal="true">
+        <dc:Bounds x="-575" y="-190" width="2166" height="185" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0kp7hoz_di" bpmnElement="Lane_0kp7hoz" isHorizontal="true">
+        <dc:Bounds x="-575" y="-5" width="2166" height="255" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0jjra2r_di" bpmnElement="Flow_0jjra2r">
+        <di:waypoint x="770" y="80" />
+        <di:waypoint x="820" y="80" />
+        <di:waypoint x="820" y="154" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03w9o0u_di" bpmnElement="Flow_03w9o0u">
+        <di:waypoint x="-235" y="-85" />
+        <di:waypoint x="-95" y="-85" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-176" y="-103" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rvw66e_di" bpmnElement="Flow_0rvw66e">
+        <di:waypoint x="-45" y="-85" />
+        <di:waypoint x="0" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rqpwh5_di" bpmnElement="Flow_0rqpwh5">
+        <di:waypoint x="-260" y="-60" />
+        <di:waypoint x="-260" y="179" />
+        <di:waypoint x="-200" y="179" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-251" y="-47" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d26cja_di" bpmnElement="Flow_0d26cja">
+        <di:waypoint x="-469" y="-85" />
+        <di:waypoint x="-410" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cdm56s_di" bpmnElement="Flow_1cdm56s">
+        <di:waypoint x="845" y="179" />
+        <di:waypoint x="870" y="179" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1l2cgnw_di" bpmnElement="Flow_1l2cgnw">
+        <di:waypoint x="1430" y="-85" />
+        <di:waypoint x="1482" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01o4jqr_di" bpmnElement="Flow_01o4jqr">
+        <di:waypoint x="1290" y="-85" />
+        <di:waypoint x="1330" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ptrif7_di" bpmnElement="Flow_1ptrif7">
+        <di:waypoint x="100" y="-85" />
+        <di:waypoint x="150" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fg2fjq_di" bpmnElement="Flow_1fg2fjq">
+        <di:waypoint x="580" y="179" />
+        <di:waypoint x="795" y="179" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04v8vm7_di" bpmnElement="Flow_04v8vm7">
+        <di:waypoint x="350" y="-60" />
+        <di:waypoint x="350" y="179" />
+        <di:waypoint x="460" y="179" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="354" y="17" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0inrq1v_di" bpmnElement="Flow_0inrq1v">
+        <di:waypoint x="375" y="-85" />
+        <di:waypoint x="460" y="-85" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="420" y="-103" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kirv6q_di" bpmnElement="Flow_0kirv6q">
+        <di:waypoint x="250" y="-85" />
+        <di:waypoint x="325" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wdgfxj_di" bpmnElement="Flow_0wdgfxj">
+        <di:waypoint x="-100" y="179" />
+        <di:waypoint x="-70" y="179" />
+        <di:waypoint x="-70" y="-60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_128drh0_di" bpmnElement="Flow_128drh0">
+        <di:waypoint x="-310" y="-85" />
+        <di:waypoint x="-285" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hhr2u5_di" bpmnElement="Flow_0hhr2u5">
+        <di:waypoint x="580" y="-85" />
+        <di:waypoint x="630" y="-85" />
+        <di:waypoint x="630" y="80" />
+        <di:waypoint x="670" y="80" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zlu0kd_di" bpmnElement="Flow_0zlu0kd">
+        <di:waypoint x="1103" y="179" />
+        <di:waypoint x="1160" y="179" />
+        <di:waypoint x="1160" y="-85" />
+        <di:waypoint x="1190" y="-85" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10nc1hz_di" bpmnElement="Flow_10nc1hz">
+        <di:waypoint x="970" y="179" />
+        <di:waypoint x="1003" y="179" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1utkzo4_di" bpmnElement="buchAusleihenStart">
+        <dc:Bounds x="-505" y="-103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-499" y="-63" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1g63y5r_di" bpmnElement="buchAuswaehlen">
+        <dc:Bounds x="-410" y="-125" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qmsdwx_di" bpmnElement="Beratung_durchfuehren">
+        <dc:Bounds x="-200" y="139" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xrb5u4_di" bpmnElement="Gateway_0xrb5u4" isMarkerVisible="true">
+        <dc:Bounds x="-285" y="-110" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-289" y="-140" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1s0riee_di" bpmnElement="Gateway_1s0riee" isMarkerVisible="true">
+        <dc:Bounds x="-95" y="-110" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nly8jq_di" bpmnElement="empfehlungPruefen">
+        <dc:Bounds x="0" y="-125" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1aak8e5_di" bpmnElement="Gateway_1aak8e5" isMarkerVisible="true">
+        <dc:Bounds x="325" y="-110" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="307" y="-147" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ixfqmx_di" bpmnElement="Activity_0ixfqmx">
+        <dc:Bounds x="460" y="-125" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03qxl75_di" bpmnElement="Activity_17jzrta">
+        <dc:Bounds x="150" y="-125" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1idzvsm_di" bpmnElement="Activity_1ijli99">
+        <dc:Bounds x="460" y="139" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_079akik_di" bpmnElement="Activity_079akik">
+        <dc:Bounds x="670" y="40" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0oiuekf_di" bpmnElement="Gateway_0oiuekf" isMarkerVisible="true">
+        <dc:Bounds x="795" y="154" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1iuq9tj_di" bpmnElement="Event_1iuq9tj">
+        <dc:Bounds x="1482" y="-103" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1461" y="-59" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g2bsvc_di" bpmnElement="Activity_0g2bsvc">
+        <dc:Bounds x="1190" y="-125" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dq1o57_di" bpmnElement="Activity_0dq1o57">
+        <dc:Bounds x="1330" y="-125" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wershe_di" bpmnElement="Activity_1uuu056">
+        <dc:Bounds x="1003" y="139" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dmfl3n_di" bpmnElement="Activity_1dmfl3n">
+        <dc:Bounds x="870" y="139" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

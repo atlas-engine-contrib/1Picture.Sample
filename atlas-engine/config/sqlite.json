@@ -1,0 +1,31 @@
+{
+    "httpServer": {
+        "host": "0.0.0.0",
+        "port": 8000
+    },
+    "logging": {
+        "outputPath": "logs"
+    },
+    "database": {
+        "username": null,
+        "password": null,
+        "database": null,
+        "host": null,
+        "port": null,
+        "dialect": "sqlite",
+        "storage": "atlasengine.sqlite",
+        "supportBigNumbers": true,
+        "resetPasswordRequestTimeToLive": 12,
+        "logging": false
+    },
+    "iam": {
+        "baseUrl": "http://atlas-authority:5000",
+        "claimUrl": "http://atlas-authority:5000/claims/ensure",
+        "allowAnonymousRootAccess": true,
+        "cache": {
+            "enabled": true,
+            "cacheLifetimeInSeconds": 300,
+            "cleanupIntervalInSeconds": 5
+        }
+    }
+}

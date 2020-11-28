@@ -1,0 +1,23 @@
+.form-card {
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    max-width: 40rem;
+    min-height: 13rem;
+}
+
+.form-card-buttons {
+    text-align: right;
+}
+
+.form-card-header {
+    margin-top: 0.5rem;
+}
+
+.suspend-button {
+    margin-left: 10px;
+}
+
+.finish-button {
+    margin-left: 10px;
+}

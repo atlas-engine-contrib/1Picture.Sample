@@ -1,0 +1,48 @@
+version: "3.5"
+services:
+  portal:
+    image: 5minds/portal:2.0.0-alpha.4
+    restart: always
+    volumes:
+      - ./atlas-ui/theme.css:/theme.css:ro
+      - ./atlas-ui/config.json:/config.json:ro
+      - ./atlas-ui/assets:/assets
+    command: "--customFormsUrl --config /config.json --theme /theme.css --assets /assets"
+    ports:
+      - 8082:8082
+    environment:
+      useOAuth2: "true"
+      oauth2Configuration__clientId: atlasui
+      oauth2Configuration__scopes: test_resource
+      applicationBaseUrl: http://localhost:8082
+      atlasEngineUrl: http://localhost:8000
+      customFormConfig__/.*/: http://localhost:3000
+
+  atlas-authority:
+    image: 5minds/5minds-authority
+    volumes:
+      - ./atlas-authority/storage/identity-server/:/app/storage/:rw
+    ports:
+      - 5000:5000
+
+  engine:
+    image: 5minds/atlas_engine_fullstack_server:11.0.1
+    ports:
+      - 8000:8000
+    volumes:
+      - ./atlas-engine/config/:/etc/atlas-engine
+      - ./atlas-engine/storage/:/root/.config/AtlasEngineFullstackServer/databases
+    environment:
+      - CONFIG_PATH=/etc/atlas-engine/sqlite.json
+
+  atlasui-customforms:
+    image: 5minds/1picture_4h_workshop_customforms
+    ports:
+      - 3000:80
+
+  bookservice:
+    image: 5minds/booksservice
+    build:
+      context: ./src/BooksApi/
+    ports:
+      - 5011:80

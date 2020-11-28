@@ -38,6 +38,10 @@ docker-compose up
 
 http://localhost:8082
 
+user: admin
+
+password: test
+
 ### AtlasEngine:
 
 http://localhost:8000

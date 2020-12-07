@@ -1,0 +1,60 @@
+:root {
+    --background-color-contrast: #ffffff !important;
+    --background-color-nav-item-active: hsla(225, 3%, 26%, 0.2);
+    --text-color-contrast: #000000;
+    --text-color: #000000;
+    --bright-cerulean: #000000;
+    --border-color-nav-item-active: #35608A;
+    --background-color-nav-item-activ: #F08A00;
+}
+
+.startable:nth-child(1n) {
+    background: linear-gradient(45.92deg, #141e8c, #008bd0);
+}
+
+.search-bar__submit {
+    color: #141e8c;
+}
+
+/* .btn--start-button {
+    color: #000000;
+    border-color: #000000;
+} */
+
+.startable {
+    color: #ffffff;
+}
+
+.btn--task-continue {
+    color: #000000;
+    border-color: #000000;
+}
+
+.btn--task-continue:hover:not(:disabled) {
+    color: #ffffff;
+}
+
+.app-sidebar__logo img {
+    min-height: 120px;
+}
+
+.main-nav__nav-item--active,
+.main-nav__nav-item:hover {
+    --text-color-nav-item-active: #000000 !important;
+    --background-color-nav-item-active: hsla(225, 3%, 26%, 0.2);
+}
+
+@media screen and (min-width: 1200px) {
+    .homepage-view__task-list {
+        max-width: 50%;
+    }
+
+    .homepage-view__infopoint {
+        max-width: 50%;
+    }
+
+    .task-list-view {
+        max-width: 50%;
+    }
+
+}

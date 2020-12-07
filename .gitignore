@@ -3,6 +3,8 @@ obj/
 
 .DS_Store
 
+*.sqlite
+
 # Logs
 logs
 *.log

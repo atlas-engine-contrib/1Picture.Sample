@@ -26,7 +26,9 @@ services:
       - 5000:5000
 
   engine:
-    image: 5minds/atlas_engine_fullstack_server:11.0.1
+    image: 5minds/atlas_engine_fullstack_server_with_metrics:latest
+    build:
+      context: ./atlas-engine/
     ports:
       - 8000:8000
     volumes:

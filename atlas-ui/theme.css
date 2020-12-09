@@ -1,0 +1,67 @@
+:root {
+    --background-color-contrast: #A50A50 !important;
+    --background-color-nav-item-active: hsla(225, 3%, 26%, 0.2);
+    --text-color-contrast: #000000;
+    --text-color: #ffffff;
+    --bright-cerulean: #000000;
+    --border-color-nav-item-active: #35608A;
+    --background-color-nav-item-activ: #F08A00;
+}
+
+.startable:nth-child(1n) {
+    background: linear-gradient(45.92deg, #5A9632, #82BE3C);
+}
+
+.search-bar__submit {
+    color: #A50A50;
+}
+
+.alert-success {
+    color: #FFFFFF;
+    background-color: #82BE3C;
+}
+
+/* .btn--start-button {
+    color: #000000;
+    border-color: #000000;
+} */
+
+.startable {
+    color: #ffffff;
+}
+
+.btn--task-continue {
+    color: #ffffff;
+    border-color: #82BE3C;
+    background-color: #82BE3C;
+}
+
+.btn--task-continue:hover:not(:disabled) {
+    color: #82BE3C;
+    background-color: #ffffff;
+}
+
+.app-sidebar__logo img {
+    min-height: 40px;
+}
+
+.main-nav__nav-item--active,
+.main-nav__nav-item:hover {
+    --text-color-nav-item-active: #ffffff !important;
+    /* --background-color-nav-item-active: hsla(225, 3%, 26%, 0.2); */
+}
+
+@media screen and (min-width: 1200px) {
+    .homepage-view__task-list {
+        max-width: 50%;
+    }
+
+    .homepage-view__infopoint {
+        max-width: 50%;
+    }
+
+    .task-list-view {
+        max-width: 50%;
+    }
+
+}

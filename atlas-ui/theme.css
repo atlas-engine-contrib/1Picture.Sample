@@ -13,7 +13,7 @@
 }
 
 .search-bar__submit {
-    color: #A50A50;
+    color: #82BE3C;
 }
 
 .alert-success {
@@ -37,8 +37,8 @@
 }
 
 .btn--task-continue:hover:not(:disabled) {
-    color: #82BE3C;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #6ea133;
 }
 
 .app-sidebar__logo img {

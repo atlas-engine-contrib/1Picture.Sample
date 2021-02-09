@@ -2,7 +2,7 @@
   "name": "atlasui.analyse.logs",
   "version": "1.0.0",
   "description": "Analyse and visualize the Logs of the AltasEngine",
-  "main": "index.js",
+  "main": "dist/telegraf_plugin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "atlas-engine --require $PWD/dist/telegraf_plugin.js",
@@ -12,12 +12,10 @@
   "author": "Tim Hoffmann",
   "license": "ISC",
   "dependencies": {
-    "@atlas-engine/fullstack_server": "^10.0.0",
-    "@atlas-engine/process_model": "^1.1.0",
-    "@atlas-engine/runtime_domain.contracts": "^1.0.0",
     "axios": "^0.20.0"
   },
   "devDependencies": {
+    "@atlas-engine/atlas_engine_sdk": "1.1.0",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "@types/bluebird": "^3.5.32",

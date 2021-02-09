@@ -11,10 +11,13 @@ COPY plugins/ /usr/src/
 # TypeScript
 RUN npm run build
 
-FROM 5minds/atlas_engine_fullstack_server:11.0.1
+FROM 5minds/atlas_engine_fullstack_server:11.2.2
 
-COPY --from=builder /usr/src/dist/*.js /plugins/
-COPY --from=builder /usr/src/node_modules /plugins/
+COPY --from=builder /usr/src/dist /plugins/telegraf_plugin/dist
+COPY --from=builder /usr/src/node_modules /plugins/telegraf_plugin/node_modules
+COPY --from=builder /usr/src/package.json /plugins/telegraf_plugin/
 
 
-CMD ["/bin/index.js", "--require", "/plugins/telegraf_plugin.js"]
+
+
+CMD ["/bin/index.js", "--extensions-dir", "/plugins/"]

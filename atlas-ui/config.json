@@ -1,18 +1,22 @@
 {
-  "customFormConfig": {},
-  "processModelListConfig": {
-    "processes": [
-      {
+  "customForms": {
+    "/.*/": "http://localhost:3000"
+  },
+  "processModels": {
+    "include": [
+      "BuchAusleihen"
+    ],
+    "exclude": [],
+    "settings": {
+      "BuchAusleihen": {
         "title": "Buch ausleihen",
         "body": "Mit diesem Prozess kann ein Buch aus der Bibliothek ausgeliehen werden.",
-        "processModelId": "BuchAusleihen",
-        "startButtons": [
+        "startButtonTitles": [
           {
-            "startEventId": "buchAusleihenStart",
-            "title": "Ausleihe starten"
+            "buchAusleihenStart": "Ausleihe starten"
           }
         ]
       }
-    ]
+    }
   }
 }

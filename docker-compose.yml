@@ -1,13 +1,13 @@
 version: "3.5"
 services:
   portal:
-    image: 5minds/portal:2.0.0-alpha.4
+    image: 5minds/portal:3.0.1
     restart: always
     volumes:
       - ./atlas-ui/theme.css:/theme.css:ro
       - ./atlas-ui/config.json:/config.json:ro
       - ./atlas-ui/assets:/assets
-    command: "--customFormsUrl --config /config.json --theme /theme.css --assets /assets"
+    command: "--config /config.json --theme /theme.css --assets /assets"
     ports:
       - 8082:8082
     environment:
@@ -15,7 +15,7 @@ services:
       oauth2Configuration__clientId: atlasui
       oauth2Configuration__scopes: test_resource
       applicationBaseUrl: http://localhost:8082
-      atlasEngineUrl: http://localhost:8000
+      atlasEngineUrl: http://localhost:10560
       customFormConfig__/.*/: http://localhost:3000
 
   atlas-authority:
@@ -30,7 +30,7 @@ services:
     build:
       context: ./atlas-engine/
     ports:
-      - 8000:8000
+      - 10560:10560
     volumes:
       - ./atlas-engine/config/:/etc/atlas-engine
       - ./atlas-engine/storage/:/root/.config/AtlasEngineFullstackServer/databases

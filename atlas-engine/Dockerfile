@@ -11,7 +11,7 @@ COPY plugins/ /usr/src/
 # TypeScript
 RUN npm run build
 
-FROM 5minds/atlas_engine_fullstack_server:11.2.2
+FROM 5minds/atlas_engine_fullstack_server:12.0.3
 
 COPY --from=builder /usr/src/dist /plugins/telegraf_plugin/dist
 COPY --from=builder /usr/src/node_modules /plugins/telegraf_plugin/node_modules

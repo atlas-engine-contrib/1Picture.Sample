@@ -37,21 +37,17 @@ services:
     environment:
       - CONFIG_PATH=/etc/atlas-engine/sqlite.json
 
-  # atlasui-customforms:
-  #   image: 5minds/1picture_4h_workshop_customforms
-  #   ports:
-  #     - 3000:80
-
-  # atlasui-customforms:
-  #   image: node:10
-  #   working_dir: /usr/app
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./customforms/desktop/:/usr/app/
-  #   environment:
-  #     - BROWSER=none
-  #   command: "npm start"
+  customforms:
+    image: 5minds/processcube_sample_customforms
+    build:
+      context: ./CustomForms/desktop
+      dockerfile: Dockerfile-develop
+    volumes:
+      - ./customforms/desktop/src/:/app/src/
+    ports:
+      - 3000:3000
+    environment:
+      - BROWSER=none
 
   bookservice:
     image: 5minds/booksservice

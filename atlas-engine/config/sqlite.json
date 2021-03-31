@@ -23,5 +23,8 @@
             "cacheLifetimeInSeconds": 300,
             "cleanupIntervalInSeconds": 5
         }
+    },
+    "extraInfo": {
+        "portalUrl": "http://localhost:8082/"
     }
 }

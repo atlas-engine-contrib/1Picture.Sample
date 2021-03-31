@@ -1,0 +1,69 @@
+:root {
+    /* --background-color-contrast: #A50A50 !important; */
+    --background-color-nav-item-active: hsla(225, 3%, 26%, 0.2);
+    --button-background-color: #50A8CB;
+    --box-text-color: #000000;
+    --sidebar-background-color: #FFFFFF;
+    --sidebar-item-active-background-color: hsla(0, 0%, 38%, 0.564);
+    --sidebar-item-text-color: #000000;
+    --sidebar-item-active-text-color: #000000;
+    --task-list-header-text-color: #000000;
+    --text-color-contrast: #000000;
+    --text-color: #000000;
+    --bright-cerulean: #000000;
+    --border-color-nav-item-active: #50A8CB;
+    --background-color-nav-item-activ: #F08A00;
+}
+
+.startable:nth-child(1n) {
+    background: linear-gradient(45.92deg, #50A8CB, #67D1C0);
+}
+
+.search-bar__submit {
+    color: #50A8CB;
+}
+
+.alert-success {
+    color: #000000;
+    background-color: linear-gradient(45.92deg, #50A8CB, #67D1C0) !important;
+}
+
+/* .btn--start-button {
+    color: #000000;
+    border-color: #000000;
+} */
+
+.startable {
+    color: #000000;
+}
+
+.btn--task-continue {
+    color: #ffffff;
+    border-color: #50A8CB;
+    background-color: linear-gradient(45.92deg, #50A8CB, #67D1C0) !important;
+}
+
+.btn--task-continue:hover:not(:disabled) {
+    color: #ffffff;
+    background-color: #67D1C0;
+}
+
+.app-sidebar__logo img {
+    min-height: 40px;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .homepage-view__task-list {
+        max-width: 50%;
+    }
+
+    .homepage-view__infopoint {
+        max-width: 50%;
+    }
+
+    .task-list-view {
+        max-width: 50%;
+    }
+
+}

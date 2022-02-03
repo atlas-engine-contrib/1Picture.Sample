@@ -28,7 +28,7 @@ services:
   engine:
     image: 5minds/engine:13.3.0
     ports:
-      - 10560:10560
+      - 10560:80
     volumes:
       - ./atlas-engine/config/:/etc/atlas-engine
       - ./atlas-engine/storage/:/root/.config/AtlasEngineFullstackServer/databases

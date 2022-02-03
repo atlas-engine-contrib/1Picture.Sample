@@ -27,8 +27,6 @@ services:
 
   engine:
     image: 5minds/engine:13.3.0
-    build:
-      context: ./atlas-engine/
     ports:
       - 10560:10560
     volumes:

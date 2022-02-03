@@ -28,12 +28,13 @@ services:
   engine:
     image: 5minds/engine:13.3.0
     ports:
-      - 10560:80
+      - 10560:10560
     volumes:
       - ./atlas-engine/config/:/etc/atlas-engine
       - ./atlas-engine/storage/:/root/.config/AtlasEngineFullstackServer/databases
     environment:
       - CONFIG_PATH=/etc/atlas-engine/sqlite.json
+    command: --port 10560
 
   customforms:
     image: 5minds/processcube_sample_customforms

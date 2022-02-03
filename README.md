@@ -30,7 +30,7 @@
 
 
 ```docker
-docker-compose build
+docker-compose build --build-arg NPM_TOKEN="<fill your NPM_TOKEN here>"
 docker-compose up
 ```
 
